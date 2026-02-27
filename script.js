@@ -14,7 +14,8 @@ function deleteLast(){
 
 function calculate(){
     try{
-        result.value = eval(result.value);
+        let expression = result.value;
+        result.value = Function("return " + expression)();
     }catch{
         result.value = "Error";
     }
