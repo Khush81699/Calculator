@@ -81,3 +81,23 @@ color:white;
 background:#44bd32;
 color:white;
 }
+
+.history{
+margin-top:20px;
+background:#2f3640;
+padding:15px;
+border-radius:10px;
+color:white;
+width:320px;
+}
+
+.history ul{
+list-style:none;
+max-height:150px;
+overflow-y:auto;
+}
+
+.history li{
+padding:5px 0;
+border-bottom:1px solid #555;
+}

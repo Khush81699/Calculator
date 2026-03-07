@@ -1,9 +1,11 @@
 let result = document.getElementById("result");
+let historyList = document.getElementById("history");
 
 function append(value) {
-    if (result.value === "Error") {
-        result.value = "";
-    }
+    if (result.value === "Error") result.value = "";
+
+    if (result.value.length >= 15) return;
+
     result.value += value;
 }
 
@@ -17,57 +19,54 @@ function deleteLast() {
 
 function calculate() {
     try {
+        if (result.value === "") return;
+
         let expression = result.value;
+        let answer = Function("return " + expression)();
 
-        if (expression.trim() === "") return;
+        addHistory(expression, answer);
 
-        result.value = Function("return " + expression)();
+        result.value = answer;
     } catch {
         result.value = "Error";
     }
 }
 
 function percentage() {
-    try {
-        result.value = parseFloat(result.value) / 100;
-    } catch {
-        result.value = "Error";
-    }
+    if (result.value === "") return;
+    result.value = parseFloat(result.value) / 100;
 }
 
 function square() {
-    try {
-        result.value = Math.pow(parseFloat(result.value), 2);
-    } catch {
-        result.value = "Error";
-    }
+    if (result.value === "") return;
+    result.value = Math.pow(parseFloat(result.value), 2);
 }
 
 function squareRoot() {
-    try {
-        result.value = Math.sqrt(parseFloat(result.value));
-    } catch {
-        result.value = "Error";
-    }
+    if (result.value === "") return;
+    result.value = Math.sqrt(parseFloat(result.value));
 }
 
-document.addEventListener("keydown", function (event) {
-    const key = event.key;
+function addHistory(exp, res) {
+    if (!historyList) return;
 
-    if (!isNaN(key) || "+-*/.%".includes(key)) {
-        append(key);
-    }
+    let li = document.createElement("li");
+    li.textContent = exp + " = " + res;
+    historyList.prepend(li);
+}
 
-    if (key === "Enter") {
-        event.preventDefault();
+document.addEventListener("keydown", function (e) {
+
+    if (!isNaN(e.key)) append(e.key);
+
+    if (["+","-","*","/","."].includes(e.key)) append(e.key);
+
+    if (e.key === "Enter") {
+        e.preventDefault();
         calculate();
     }
 
-    if (key === "Backspace") {
-        deleteLast();
-    }
+    if (e.key === "Backspace") deleteLast();
 
-    if (key === "Escape") {
-        clearDisplay();
-    }
+    if (e.key === "Escape") clearDisplay();
 });
