@@ -11,6 +11,8 @@ The Calculator Web App allows users to perform basic mathematical calculations t
 
 This project helps in understanding **frontend development concepts and JavaScript logic building**.
 
+🔗 **Live Demo:** https://khush81699.github.io/Calculator/
+
 ---
 
 ## 🚀 Features
