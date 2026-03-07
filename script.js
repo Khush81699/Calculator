@@ -1,11 +1,10 @@
 let result = document.getElementById("result");
 let historyList = document.getElementById("history");
 
-function append(value) {
-    if (result.value === "Error") result.value = "";
-
-    if (result.value.length >= 15) return;
-
+function append(value){
+    if(result.value.length >= 15){
+        return;
+    }
     result.value += value;
 }
 
