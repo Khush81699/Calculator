@@ -1,17 +1,14 @@
 # 🧮 Calculator Web App
 
-A simple and responsive Calculator built using **HTML, CSS, and JavaScript**.  
-This project performs basic arithmetic operations and demonstrates **DOM manipulation and event handling in JavaScript**.
+🔗 Live Demo: https://khush81699.github.io/Calculator/
 
----
+A simple and responsive Calculator built using HTML, CSS, and JavaScript.
 
 ## 📖 Project Overview
 
 The Calculator Web App allows users to perform basic mathematical calculations through a simple and interactive user interface. Users can input numbers and operators using calculator buttons, and the result is displayed instantly.
 
 This project helps in understanding **frontend development concepts and JavaScript logic building**.
-
-🔗 **Live Demo:** https://khush81699.github.io/Calculator/
 
 ---
 
