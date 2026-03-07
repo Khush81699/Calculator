@@ -2,70 +2,54 @@ let result = document.getElementById("result");
 let historyList = document.getElementById("history");
 
 function append(value){
-    if(result.value.length >= 15){
-        return;
-    }
-    result.value += value;
+
+if(result.value === "Error"){
+result.value="";
 }
 
-function clearDisplay() {
-    result.value = "";
+result.value += value;
+
 }
 
-function deleteLast() {
-    result.value = result.value.slice(0, -1);
+function clearDisplay(){
+result.value="";
 }
 
-function calculate() {
-    try {
-        if (result.value === "") return;
-
-        let expression = result.value;
-        let answer = Function("return " + expression)();
-
-        addHistory(expression, answer);
-
-        result.value = answer;
-    } catch {
-        result.value = "Error";
-    }
+function deleteLast(){
+result.value = result.value.slice(0,-1);
 }
 
-function percentage() {
-    if (result.value === "") return;
-    result.value = parseFloat(result.value) / 100;
+function calculate(){
+
+try{
+
+let expression = result.value;
+
+if(expression === "") return;
+
+let answer = Function("return " + expression)();
+
+if(answer === undefined || answer === Infinity || isNaN(answer)){
+result.value="Error";
+return;
 }
 
-function square() {
-    if (result.value === "") return;
-    result.value = Math.pow(parseFloat(result.value), 2);
+result.value = answer;
+
+addHistory(expression,answer);
+
+}catch{
+result.value="Error";
 }
 
-function squareRoot() {
-    if (result.value === "") return;
-    result.value = Math.sqrt(parseFloat(result.value));
 }
 
-function addHistory(exp, res) {
-    if (!historyList) return;
+function addHistory(exp,res){
 
-    let li = document.createElement("li");
-    li.textContent = exp + " = " + res;
-    historyList.prepend(li);
+let li = document.createElement("li");
+
+li.textContent = exp + " = " + res;
+
+historyList.prepend(li);
+
 }
-
-document.addEventListener("keydown", function (e) {
-
-    if (!isNaN(e.key)) append(e.key);
-
-    if (["+","-","*","/","."].includes(e.key)) append(e.key);
-
-    if (e.key === "Enter") {
-        e.preventDefault();
-        calculate();
-    }
-
-    if (e.key === "Backspace") deleteLast();
-
-    if (e.key === "Escape") clearDisplay();
-});

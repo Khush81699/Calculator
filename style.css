@@ -2,7 +2,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Courier New', monospace;
+font-family:Arial;
 }
 
 body{
@@ -10,33 +10,44 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:#dcdde1;
+background:linear-gradient(-45deg,#667eea,#764ba2,#6dd5ed,#2193b0);
+background-size:400% 400%;
+animation:bgMove 10s ease infinite;
+}
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+display:flex;
+gap:40px;
+align-items:center;
 }
 
 .calculator{
 background:#2f3640;
 padding:25px;
 border-radius:25px;
-box-shadow:
-15px 15px 30px rgba(0,0,0,0.4),
--5px -5px 15px rgba(255,255,255,0.1);
-width:330px;
+box-shadow:20px 20px 40px rgba(0,0,0,0.3);
+width:320px;
 }
 
 .display input{
 width:100%;
-height:70px;
+height:60px;
 border:none;
 outline:none;
 border-radius:15px;
-padding:15px;
-font-size:28px;
+padding:10px;
+font-size:24px;
 text-align:right;
 background:#1e272e;
 color:#00ffcc;
-box-shadow:
-inset 5px 5px 10px rgba(0,0,0,0.7),
-inset -5px -5px 10px rgba(255,255,255,0.05);
+overflow-x:auto;
+white-space:nowrap;
 }
 
 .buttons{
@@ -47,61 +58,49 @@ margin-top:20px;
 }
 
 button{
-height:65px;
+height:60px;
 border:none;
 border-radius:15px;
 font-size:20px;
 cursor:pointer;
 background:#485460;
 color:white;
-box-shadow:
-5px 5px 10px rgba(0,0,0,0.6),
--2px -2px 5px rgba(255,255,255,0.1);
-transition:0.2s;
+box-shadow:6px 6px 12px rgba(0,0,0,0.6);
 }
 
 button:active{
-transform:translateY(4px);
-box-shadow:
-inset 5px 5px 10px rgba(0,0,0,0.7),
-inset -2px -2px 5px rgba(255,255,255,0.1);
+transform:scale(.95);
 }
 
 .operator{
 background:#f39c12;
-color:white;
 }
 
 .equal{
 background:#e84118;
-color:white;
 }
 
 .special{
 background:#44bd32;
-color:white;
 }
 
 .history{
-margin-top:20px;
 background:#2f3640;
-padding:15px;
-border-radius:10px;
+padding:20px;
+border-radius:15px;
 color:white;
-width:320px;
+width:250px;
+height:400px;
+box-shadow:10px 10px 20px rgba(0,0,0,0.3);
 }
 
 .history ul{
 list-style:none;
-max-height:150px;
+max-height:330px;
 overflow-y:auto;
 }
 
 .history li{
-padding:5px 0;
+padding:6px;
 border-bottom:1px solid #555;
-}
-
-.display input{
-overflow-x:auto;
 }
